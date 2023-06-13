@@ -25,7 +25,7 @@ def sidebar():
             "OpenAI API Key",
             type="password",
             placeholder="Paste your OpenAI API key here (sk-...)",
-            help="You can get your API key from https://platform.openai.com/account/api-keys.",  # noqa: E501
+            help="You can get your API key from https://platform.openai.com/account/api-keys.",  
             value=st.session_state.get("OPENAI_API_KEY", ""),
         )
 
@@ -36,12 +36,21 @@ def sidebar():
         st.markdown("# About")
         st.markdown(
             "CSV Whisperer allows you to ask questions about your "
-            "csv files and get accurate answers. "
+            "csv files and get accurate answers utilizing LLM. " 
         )
         st.markdown(
             "This tool is a work in progress.💡 "
+            "If you have any feedback or suggestions, please contact me at https://www.linkedin.com/in/petar-popovski/"
             
         )
+        st.markdown("---")
+        st.markdown("# Privacy")
+        st.markdown(
+           "I do not save the documents you upload in any DB"
+            "If you are looking for a solution that uses a local LLM (Large Language Model)"
+            "please reach out to me to discuss."
+        )
+        st.markdown("---")
         st.markdown("Made by Petar Popovski")
         st.markdown("---")
 
@@ -49,6 +58,7 @@ sidebar()
 def chat_with_csv(df,prompt):
     llm = OpenAI(api_token=st.session_state.get("OPENAI_API_KEY"))
     pandas_ai = PandasAI(llm)
+    st.spinner("Preparing your answer... Please be patient⏳")
     result = pandas_ai.run(df, prompt=prompt,is_conversational_answer=True)
     print(result)
     return result
