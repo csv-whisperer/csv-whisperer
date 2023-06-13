@@ -46,8 +46,8 @@ def sidebar():
         st.markdown("---")
         st.markdown("# Privacy")
         st.markdown(
-           "I do not save the documents you upload in any DB"
-            "If you are looking for a solution that uses a local LLM (Large Language Model)"
+           "I do not save the documents you upload in any DB "
+            "If you are looking for a solution that uses a local LLM (Large Language Model) "
             "please reach out to me to discuss."
         )
         st.markdown("---")
@@ -58,7 +58,6 @@ sidebar()
 def chat_with_csv(df,prompt):
     llm = OpenAI(api_token=st.session_state.get("OPENAI_API_KEY"))
     pandas_ai = PandasAI(llm)
-    st.spinner("Preparing your answer... Please be patient⏳")
     result = pandas_ai.run(df, prompt=prompt,is_conversational_answer=True)
     print(result)
     return result
