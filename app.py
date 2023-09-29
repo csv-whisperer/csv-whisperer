@@ -52,8 +52,6 @@ def sidebar():
         "please reach out to me to discuss."
         )
         st.markdown("---")
-        st.markdown("Made by Petar Popovski")
-        st.markdown("---")
 
 sidebar()
 def chat_with_csv(df,prompt):
